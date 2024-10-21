@@ -16,12 +16,6 @@ async function insertSectionBreakAtCursor(event) {
       // Insert the section break after the current selection
       selection.insertBreak(Word.BreakType.sectionNext, Word.InsertLocation.after);
       await context.sync();
-
-      // Show a notification dialog to force UI refresh
-      Office.context.ui.displayDialogAsync('about:blank', { height: 1, width: 1 }, (result) => {
-        // Close the dialog immediately
-        result.value.close();
-      });
     });
     event.completed(); // Mark the event as completed
   } catch (error) {
