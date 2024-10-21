@@ -13,29 +13,27 @@ async function insertSectionBreakAtCursor(event) {
     await Word.run(async (context) => {
       const selection = context.document.getSelection();
 
-      // Save the original selection
-      const originalRange = selection.getRange();
-      originalRange.load();
-
       // Insert the section break after the current selection
       selection.insertBreak(Word.BreakType.sectionNext, Word.InsertLocation.after);
       await context.sync();
 
-      // Move the selection to the new location to force UI refresh
-      const newRange = selection.getRange(Word.RangeLocation.after);
-      newRange.select();
+      // Insert an empty content control to force UI refresh
+      const contentControl = selection.insertContentControl();
+      contentControl.tag = "tempContentControl";
+      contentControl.appearance = "Hidden"; // Make it invisible
       await context.sync();
 
-      // Restore the original selection
-      originalRange.select();
+      // Remove the content control
+      contentControl.delete();
       await context.sync();
     });
-    event.completed(); // Mark the event as completed
+    event.completed();
   } catch (error) {
     console.log("Error inserting section break at cursor: " + error);
     event.completed();
   }
 }
+
 
 // Function to insert a section break at the end of the document
 async function insertSectionBreakDocumentEnd(event) {
