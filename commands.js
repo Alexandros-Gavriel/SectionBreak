@@ -17,14 +17,12 @@ async function insertSectionBreakAtCursor(event) {
       selection.insertBreak(Word.BreakType.sectionNext, Word.InsertLocation.after);
       await context.sync();
 
-      // Insert an empty content control to force UI refresh
-      const contentControl = selection.insertContentControl();
-      contentControl.tag = "tempContentControl";
-      contentControl.appearance = "Hidden"; // Make it invisible
+      // Insert a temporary paragraph
+      const tempParagraph = selection.insertParagraph("", Word.InsertLocation.after);
       await context.sync();
 
-      // Remove the content control
-      contentControl.delete();
+      // Delete the temporary paragraph
+      tempParagraph.delete();
       await context.sync();
     });
     event.completed();
@@ -33,6 +31,7 @@ async function insertSectionBreakAtCursor(event) {
     event.completed();
   }
 }
+
 
 
 // Function to insert a section break at the end of the document
