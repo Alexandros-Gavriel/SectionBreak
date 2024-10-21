@@ -17,22 +17,18 @@ async function insertSectionBreakAtCursor(event) {
       selection.insertBreak(Word.BreakType.sectionNext, Word.InsertLocation.after);
       await context.sync();
 
-      // Insert a temporary paragraph
-      const tempParagraph = selection.insertParagraph("", Word.InsertLocation.after);
-      await context.sync();
-
-      // Delete the temporary paragraph
-      tempParagraph.delete();
-      await context.sync();
+      // Show a notification dialog to force UI refresh
+      Office.context.ui.displayDialogAsync('about:blank', { height: 1, width: 1 }, (result) => {
+        // Close the dialog immediately
+        result.value.close();
+      });
     });
-    event.completed();
+    event.completed(); // Mark the event as completed
   } catch (error) {
     console.log("Error inserting section break at cursor: " + error);
     event.completed();
   }
 }
-
-
 
 // Function to insert a section break at the end of the document
 async function insertSectionBreakDocumentEnd(event) {
