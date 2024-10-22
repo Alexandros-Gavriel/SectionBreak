@@ -37,6 +37,7 @@ async function insertSectionBreakAtCursor(event) {
   }
 }
 
+
 // Associate the functions with the names used in the manifest
 Office.actions.associate("button1Function", insertSectionBreakAtCursor);
 Office.actions.associate("button2Function", insertSectionBreakDocumentEnd);
