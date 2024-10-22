@@ -4,7 +4,7 @@
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
            xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
            xsi:type="TaskPaneApp">
-  <Id>45d0e8ee-41a6-494e-8e72-5268b717cc73</Id>
+  <Id>[xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx]</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Alexandros Gavriel</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
